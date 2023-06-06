@@ -1,0 +1,91 @@
+* {
+    padding : 0px;
+    margin : 0px;
+    background-color: pink;
+    box-sizing: border-box;
+}
+
+.activeVSPlayer {
+    display: none;
+
+}
+.VSAI {
+    display : block;
+}
+
+.square1 {
+    width: 200px;
+    height: 200px;
+    border-bottom: 5px solid turquoise;
+    border-right: 5px solid turquoise;
+    position: relative;
+}
+.square2 {
+    width: 200px;
+    height: 200px;
+    border-bottom: 5px solid turquoise;
+    position: relative;
+    box-sizing: border-box;
+}
+.square3 {
+    width: 200px;
+    height: 200px;
+    border-left: 5px solid turquoise;
+    border-bottom: 5px solid turquoise;
+    position: relative;
+    box-sizing: border-box;
+}
+.square4 {
+    width: 200px;
+    height: 200px;
+    border-bottom: 5px solid turquoise;
+    border-right: 5px solid turquoise;
+    position: relative;
+}
+
+.square5 {
+    width: 200px;
+    height: 200px;
+    border-bottom: 5px solid turquoise;
+    position: relative;
+}
+
+.square6 {
+    width: 200px;
+    height: 200px;
+    border-left: 5px solid turquoise;
+    border-bottom: 5px solid turquoise;
+    position: relative;
+}
+.square7 {
+    width: 200px;
+    height: 200px;
+    border-right: 5px solid turquoise;
+    position: relative;
+}
+
+.square8 {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.square9 {
+    width: 200px;
+    height: 200px;
+    border-left: 5px solid turquoise;
+    position: relative;
+}
+#board {
+    width: 617px;
+    height: 600px;
+    margin: 0;
+}
+.row1, .row2, .row3 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    display : flex;
+    flex-direction: row;
+}
