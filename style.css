@@ -1,110 +1,148 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
 :root {
-    --main-bg-color: black;
+    --cell-size: 200px;
+    --mark-size: calc(var(--cell-size) * .9);
 }
 
-* {
-    padding : 0px;
-    background-color: silver;
-    box-sizing: border-box;
-}
-#logo {
-    text-align: center;
-    font-size: 35px;
-}
 body {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-evenly;
-    flex-direction: row-reverse;
-    align-items: center;
-}
-.activeVSPlayer {
-    display: none;
-}
-.VSAI {
-    display : block;
-}
-.score {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-content: space-around;
-    height: 10vh;
-    align-items: center;
-    justify-content: center;
-}
-
-#square1 {
-    width: 200px;
-    height: 200px;
-    border-bottom: 5px solid var(--main-bg-color);
-    border-right: 5px solid var(--main-bg-color);
-}
-#square2 {
-    width: 200px;
-    height: 200px;
-    border-bottom: 5px solid var(--main-bg-color);
-    box-sizing: border-box;
-}
-#square3 {
-    width: 200px;
-    height: 200px;
-    border-left: 5px solid var(--main-bg-color);
-    border-bottom: 5px solid var(--main-bg-color);
-    box-sizing: border-box;
-}
-#square4 {
-    width: 200px;
-    height: 200px;
-    border-bottom: 5px solid var(--main-bg-color);
-    border-right: 5px solid var(--main-bg-color);
-}
-
-#square5 {
-    width: 200px;
-    height: 200px;
-    border-bottom: 5px solid var(--main-bg-color);
-}
-
-#square6 {
-    width: 200px;
-    height: 200px;
-    border-left: 5px solid var(--main-bg-color);
-    border-bottom: 5px solid var(--main-bg-color);
-}
-#square7 {
-    width: 200px;
-    height: 200px;
-    border-right: 5px solid var(--main-bg-color);
-}
-
-#square8 {
-    width: 200px;
-    height: 200px;
-}
-
-#square9 {
-    width: 200px;
-    height: 200px;
-    border-left: 5px solid var(--main-bg-color);
-}
-#board {
-    width: 617px;
-    height: 600px;
     margin: 0;
+    width: 100vw;
+    height: 100vh;
 }
-.row {
-    display : flex;
-}
-.square {
-    border: none;
-    width: 80px;
-    height: 80px;
+h1,
+p {
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 24px;
-    text-align: center;
+    align-items: center;
+}
+
+.board {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3,auto);
+}
+
+.square {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     cursor: pointer;
+}
+
+.square:first-child,
+.square:nth-child(2),
+.square:nth-child(3) {
+    border-top: none;
+}
+
+.square:nth-child(3n + 1) {
+    border-left: none;
+}
+.square:nth-child(3n + 3) {
+    border-right: none;
+}
+
+.square:last-child,
+.square:nth-child(7),
+.square:nth-child(8) {
+    border-bottom: none;
+}
+.square.x,
+.square.circle {
+    cursor:not-allowed;
+}
+
+.square.x::before,
+.square.x::after,
+.square.circle::before,
+.square.circle::after {
+    background-color: black;
+}
+.board.x .square:not(.x):not(.circle):hover::before,
+.board.x .square:not(.x):not(.circle):hover::after,
+.board.circle .square:not(.x):not(.circle):hover::before,
+.board.circle .square:not(.x):not(.circle):hover::after {
+    background-color: lightgrey;
+}
+
+.square.x::before,
+.square.x::after,
+.board.x .square:not(.x):not(.circle):hover::before,
+.board.x .square:not(.x):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+}
+.square.x::before,
+.board.x .square:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+}
+.square.x::after,
+.board.x .square:not(.x):not(.circle):hover::after {
+    transform: rotate(-45deg);
+}
+
+.square.circle::before,
+.square.circle::after,
+.board.circle .square:not(.x):not(.circle):hover::before,
+.board.circle .square:not(.x):not(.circle):hover::after
+ {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+.square.circle::before,
+.board.circle .square:not(.x):not(.circle):hover::before {
+    width: calc(var(--mark-size) * .9);
+    height: calc(var(--mark-size) * .9);
+}
+.square.circle::after,
+.board.circle .square:not(.x):not(.circle):hover::after {
+    width: calc(var(--mark-size) * .7);
+    height: calc(var(--mark-size) * .7);
+    background-color: white;
+}
+
+.winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, .9);
+    justify-content: center;
+    align-items: center;
+    color : white;
+    flex-direction: column;
+    font-size :5rem;
+}
+
+.winning-message button {
+    font-size: 3rem;
+    background-color: white;
+    border : 1px solid black;
+    padding: .25em .5em;
+    cursor: pointer;
+}
+
+.winning-message button:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+.winning-message.show {
+    display: flex;
 }
